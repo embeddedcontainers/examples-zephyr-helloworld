@@ -11,5 +11,8 @@ manifest:
       remote: zephyrproject-rtos
       revision: main
       import:
+        path-prefix: deps
         name-allowlist:
           - zephyr
+          - cmsis
+          - hal_stm32
