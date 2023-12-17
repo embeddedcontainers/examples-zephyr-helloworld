@@ -1,0 +1,63 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "West Build",
+      "type": "shell",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "command": "west",
+      "args": [
+        "build",
+        "-p",
+        "auto",
+        "-b",
+        "nucleo_c031c6",
+        "app/"
+      ],
+      "problemMatcher": [
+        "$gcc"
+      ],
+    },
+    {
+      "label": "West Configurable Build",
+      "type": "shell",
+      "group": {
+        "kind": "build",
+      },
+      "command": "west",
+      "args": [
+        "build",
+        "-p",
+        "${input:pristine}",
+        "-b",
+        "${input:board}",
+        "app/"
+      ],
+      "problemMatcher": [
+        "$gcc"
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "id": "board",
+      "type": "promptString",
+      "default": "nucleo_c031c6",
+      "description": "See https://docs.zephyrproject.org/latest/boards/index.html"
+    },
+    {
+      "id": "pristine",
+      "type": "pickString",
+      "description": "Choose when to run a pristine build",
+      "default": "auto",
+      "options": [
+        "auto",
+        "always",
+        "never"
+      ]
+    }
+  ]
+}

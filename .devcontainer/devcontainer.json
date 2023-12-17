@@ -3,6 +3,9 @@
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/app,type=bind",
   "workspaceFolder": "/workspace",
   "onCreateCommand": "west init -l app/ && west update --narrow -o=--depth=1 && west zephyr-export && pip install -r deps/zephyr/scripts/requirements-base.txt",
+  "mounts": [
+    "source=${localWorkspaceFolder}/.vscode/,target=/workspace/.vscode,type=bind,consistency=cached"
+  ],
   "customizations": {
     "vscode": {
       "settings": {
