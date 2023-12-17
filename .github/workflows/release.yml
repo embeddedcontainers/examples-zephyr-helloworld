@@ -1,0 +1,52 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release Version."
+        required: true
+        default: "v0.0.0"
+        type: string
+
+jobs:
+  stage-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Create Release manually with GH CLI
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: gh release create --draft ${{ inputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-binaries:
+    needs: stage-release
+
+    uses: ./.github/workflows/build.yml
+    with:
+      ZEPHYR_SDK: 0.16.4
+      BOARD: nucleo_c031c6
+
+  upload-binaries:
+    needs: build-binaries
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build_artifacts_${{ github.run_id }}
+          path: ~/artifacts
+
+      - name: Upload artifacts to release
+        run: gh release upload --clobber ${{ inputs.version }} ~/artifacts/*.*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
