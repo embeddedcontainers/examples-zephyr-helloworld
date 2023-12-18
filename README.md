@@ -2,7 +2,9 @@
 
 Based on the `hello_world` from Zephyr. Currently demonstrates:
 
-* Using Dev Container
+* Using Dev Containers (tested in VS Code and on Codespaces)
+* VS Code build tasks
+* GitHub Actions to build and create Releases
 
 ## Dev Container
 
