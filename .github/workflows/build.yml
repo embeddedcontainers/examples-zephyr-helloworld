@@ -54,9 +54,9 @@ jobs:
         run: |
           cd build/zephyr
           mkdir -p artifacts
-          mv merged.hex     ./artifacts/${{ env.PREFIX }}_full_${{ env.SHA }}.hex
-          mv app_update.bin ./artifacts/${{ env.PREFIX }}_update_${{ env.SHA }}.bin
-          mv zephyr.elf     ./artifacts/${{ env.PREFIX }}_${{ env.SHA }}.elf
+          mv zephyr.bin ./artifacts/${{ env.PREFIX }}-${{ env.SHA }}.bin
+          mv zephyr.elf ./artifacts/${{ env.PREFIX }}-${{ env.SHA }}.elf
+          mv zephyr.hex ./artifacts/${{ env.PREFIX }}-${{ env.SHA }}.hex
 
       # Run IDs are unique per repo but are reused on re-runs
       - name: Save artifact
