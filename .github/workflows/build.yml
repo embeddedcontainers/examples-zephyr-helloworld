@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       ZEPHYR_SDK:
-        description: "Zephyr SDK version. Ex. 0.16.4."
+        description: "Zephyr SDK version. Ex. 0.17.1."
         required: true
         type: string
-        default: 0.16.4
+        default: 0.17.1
       BOARD:
         description: "Target board."
         required: true

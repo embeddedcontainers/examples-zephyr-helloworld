@@ -28,7 +28,7 @@ jobs:
 
     uses: ./.github/workflows/build.yml
     with:
-      ZEPHYR_SDK: 0.16.4
+      ZEPHYR_SDK: 0.17.1
       BOARD: nucleo_c031c6
 
   upload-binaries:

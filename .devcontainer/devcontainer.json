@@ -1,5 +1,5 @@
 {
-  "image": "ghcr.io/embeddedcontainers/zephyr:arm-0.16.4SDK",
+  "image": "ghcr.io/embeddedcontainers/zephyr:arm-0.17.1SDK",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/app,type=bind",
   "workspaceFolder": "/workspace",
   "onCreateCommand": "west init -l app/ && west update --narrow -o=--depth=1 && west zephyr-export && pip install -r deps/zephyr/scripts/requirements-base.txt",
@@ -12,7 +12,7 @@
         // Hush CMake
         "cmake.configureOnOpen": false,
         // IntelliSense
-        "C_Cpp.default.compilerPath": "/opt/toolchains/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc",
+        "C_Cpp.default.compilerPath": "/opt/toolchains/zephyr-sdk-0.17.1/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc",
         "C_Cpp.default.compileCommands": "build/compile_commands.json",
         // File Associations
         "files.associations": {}
